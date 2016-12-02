@@ -8,7 +8,7 @@ class SearchForm extends React.Component {
     return(
       <div>
         <form>
-          <input/>
+          <input className="search-form" placeholder="Start typing a Pokémon's name..."/>
         </form>
       </div>
     )

@@ -47,62 +47,55 @@ class App extends Component {
         <div>
           <Team/>
         </div>
-        <table>
-          <tbody>
-            {pokemonListString.map((nameString, index) => {
-              if (index % 5 === 0) {
-                return(
-                  <tr>
-                    <td>{pokemonListString[index]}</td>
-                    <td>{pokemonListString[index+1]}</td>
-                    <td>{pokemonListString[index+2]}</td>
-                    <td>{pokemonListString[index+3]}</td>
-                    <td>{pokemonListString[index+4]}</td>
-                  </tr>
-                )
-              }
-            })}
-          </tbody>
-        </table>
-        {/* <table>
-          <tbody>
-            <tr>
-              <td>Bulbasaur</td>
-              <td>Ivysaur</td>
-              <td>Venusaur</td>
-              <td>Charmander</td>
-              <td>Charmeleon</td>
-            </tr>
-            <tr>
-              <td>Charizard</td>
-              <td>Squirtle</td>
-              <td>Wartortle</td>
-              <td>Blastoise</td>
-              <td>Caterpie</td>
-            </tr>
-            <tr>
-              <td>Metapod</td>
-              <td>Butterfree</td>
-              <td>Weedle</td>
-              <td>Kakuna</td>
-              <td>Beedrill</td>
-            </tr>
-            <tr>
-              <td>Pidgey</td>
-              <td>Pidgeotto</td>
-              <td>Pidgeot</td>
-              <td>Rattata</td>
-              <td>Raticate</td>
-            </tr>
-            <tr>
-              <td>Spearow</td>
-              <td>Fearow</td>
-              <td>Ekans</td>
-              <td>Arbok</td>
-              <td>Pikachu</td>
-            </tr>
-          </tbody>
-        </table> */}
+        <div className="poke-table">
+          <table>
+            <tbody>
+              {pokemonListString.map((nameString, index) => {
+                if (index % 5 === 0) {
+                  return(
+                    <tr>
+                      <td className="poke-results">
+                        <span>
+                          <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index+1}.png`}/>
+                          <br/>
+                          {pokemonListString[index]}
+                        </span>
+                      </td>
+                      <td className="poke-results">
+                        <span>
+                          <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index+2}.png`}/>
+                          <br/>
+                          {pokemonListString[index+1]}
+                        </span>
+                      </td>
+                      <td className="poke-results">
+                        <span>
+                          <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index+3}.png`}/>
+                          <br/>
+                          {pokemonListString[index+2]}
+                        </span>
+                      </td>
+                      <td className="poke-results">
+                        <span>
+                          <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index+4}.png`}/>
+                          <br/>
+                          {pokemonListString[index+3]}
+                        </span>
+                      </td>
+                      <td className="poke-results">
+                        <span>
+                          <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index+5}.png`}/>
+                          <br/>
+                          {pokemonListString[index+4]}
+                        </span>
+                      </td>
+                    </tr>
+                  )
+                }
+              })}
+            </tbody>
+          </table>
+        </div>
       </div>
     );
   }
