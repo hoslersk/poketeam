@@ -27,9 +27,13 @@ class App extends React.Component {
     this.setState(copyOfState)
   }
 
-  fetchResults(pokemonListArray) {
+
+
+  fetchResults(array) {
+    const queryLength = this.state.searchQuery.length
+    const searchQueryInput = this.state.searchQuery
     if (this.state.searchQuery == "") {
-      return pokemonListArray.map((nameString, index) => {
+      return array.map((nameString, index) => {
         if (index % 5 === 0) {
           return(
             <tr>
@@ -37,35 +41,35 @@ class App extends React.Component {
                 <span>
                   <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index+1}.png`}/>
                   <br/>
-                  {pokemonListArray[index]}
+                  {array[index]}
                 </span>
               </td>
               <td className="poke-results">
                 <span>
                   <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index+2}.png`}/>
                   <br/>
-                  {pokemonListArray[index+1]}
+                  {array[index+1]}
                 </span>
               </td>
               <td className="poke-results">
                 <span>
                   <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index+3}.png`}/>
                   <br/>
-                  {pokemonListArray[index+2]}
+                  {array[index+2]}
                 </span>
               </td>
               <td className="poke-results">
                 <span>
                   <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index+4}.png`}/>
                   <br/>
-                  {pokemonListArray[index+3]}
+                  {array[index+3]}
                 </span>
               </td>
               <td className="poke-results">
                 <span>
                   <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index+5}.png`}/>
                   <br/>
-                  {pokemonListArray[index+4]}
+                  {array[index+4]}
                 </span>
               </td>
             </tr>
@@ -73,12 +77,75 @@ class App extends React.Component {
         }
       })
     } else {
-      return(<h1>NO LUCK</h1>)
+      const queryArray = []
+      array.map((nameString) => {
+        const queryableNameString = nameString.slice(0, queryLength).toLowerCase()
+        if (searchQueryInput == queryableNameString) {
+          return queryArray.push(nameString)
+        }
+      })
+      // var counter = 0
+      return array.map((nameString, index, originalArray) => {
+        if (queryArray.includes(nameString)) {
+          // counter++
+          return(
+            <td>
+              <span>
+                <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${originalArray.indexOf(nameString)+1}.png`}/>
+                <br/>
+                {nameString}
+              </span>
+            </td>
+          )
+          // if (index % 5 === 0) {
+          //   debugger
+          //   return(
+          //     <tr>
+          //       <td className="poke-results">
+          //         <span>
+          //           <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index+1}.png`}/>
+          //           <br/>
+          //           {queryArray[index]}
+          //         </span>
+          //       </td>
+          //       <td className="poke-results">
+          //         <span>
+          //           <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index+2}.png`}/>
+          //           <br/>
+          //           {queryArray[index+1]}
+          //         </span>
+          //       </td>
+          //       <td className="poke-results">
+          //         <span>
+          //           <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index+3}.png`}/>
+          //           <br/>
+          //           {queryArray[index+2]}
+          //         </span>
+          //       </td>
+          //       <td className="poke-results">
+          //         <span>
+          //           <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index+4}.png`}/>
+          //           <br/>
+          //           {queryArray[index+3]}
+          //         </span>
+          //       </td>
+          //       <td className="poke-results">
+          //         <span>
+          //           <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index+5}.png`}/>
+          //           <br/>
+          //           {queryArray[index+4]}
+          //         </span>
+          //       </td>
+          //     </tr>
+          //   )
+          // }
+        }
+      })
     }
   }
 
   render() {
-    const pokemonListString = "Bulbasaur,Ivysaur,Venusaur,Charmander,Charmeleon,Charizard,Squirtle,Wartortle,Blastoise,Caterpie,Metapod,Butterfree,Weedle,Kakuna,Beedrill,Pidgey,Pidgeotto,Pidgeot,Rattata,Raticate,Spearow,Fearow,Ekans,Arbok,Pikachu"
+    const pokemonListString = "Bulbasaur,Ivysaur,Venusaur,Charmander,Charmeleon,Charizard,Squirtle,Wartortle,Blastoise,Caterpie,Metapod,Butterfree,Weedle,Kakuna,Beedrill,Pidgey,Pidgeotto,Pidgeot,Rattata,Raticate,Spearow,Fearow,Ekans,Arbok,Pikachu,Raichu,Sandshrew,Sandslash,Nidoran♀,Nidorina,Nidoqueen,Nidoran♂,Nidorino,Nidoking,Clefairy,Clefable,Vulpix,Ninetales,Jigglypuff,Wigglytuff,Zubat,Golbat,Oddish,Gloom,Vileplume,Paras,Parasect,Venonat,Venomoth,Diglett,Dugtrio,Meowth,Persian,Psyduck,Golduck,Mankey,Primeape,Growlithe,Arcanine,Poliwag,Poliwhirl,Poliwrath,Abra,Kadabra,Alakazam"
 
     const pokemonListArray = pokemonListString.split(",")
 
