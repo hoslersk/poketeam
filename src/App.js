@@ -44,7 +44,7 @@ class App extends Component {
           <h2>Welcome to PokéTeam</h2>
           <SearchForm/>
         </div>
-        <div>
+        <div className="selected-team">
           <Team/>
         </div>
         <div className="poke-table">

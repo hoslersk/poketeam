@@ -36,3 +36,14 @@ table {
 .poke-results {
   padding: 0%;
 }
+
+.selected-team {
+  display: inline-block;
+  width: 100%;
+  /*margin: 0 auto, 0 auto;*/
+}
+
+.team-member {
+  float: left;
+  padding: 5%;
+}
